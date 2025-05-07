@@ -20,8 +20,7 @@ class App {
 }
 
 fun main() {
-
     val containerFactory = ContainerFactory(10)
-    val game = Game(containerFactory.constructContainer())
-    game.start()
+    val game = Game(containerFactory.constructContainer("HARD")!!)
+    game.start(System.`in`.reader(), System.out.writer())
 }

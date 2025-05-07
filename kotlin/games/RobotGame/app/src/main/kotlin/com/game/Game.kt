@@ -5,6 +5,8 @@ import com.agents.consumable.Energy
 import com.agents.consumable.Strength
 import com.game.container.Container
 import com.game.settings.DirectionKeys
+import java.io.Reader
+import java.io.Writer
 
 
 class Game(private val container: Container) {
@@ -18,27 +20,30 @@ class Game(private val container: Container) {
     private var isStarved = false
 
 
-    fun start() {
+    fun start(input: Reader, output: Writer) {
+        val reader = input.buffered()
+        val writer = output.buffered()
+
         val boardManager = container.boardManager
         val robot = container.robot
         do {
-            println(boardManager.boardToString())
-            println(robot.statsToString())
-            print("Enter a direction: ")
+            writer.write(boardManager.boardToString() + "\n").also { writer.flush() }
+            writer.write(robot.statsToString() + "\n").also { writer.flush() }
+            writer.write("Enter a direction: ").also { writer.flush() }
+            val command = reader.readLine().lowercase()
 
-            val input = readln().lowercase()
-            if (input.equals("quit")) {
-                println("Quiting game...")
+            if (command.equals("quit")) {
+                writer.write("Quitting game...\n").also { writer.flush() }
                 break
             }
 
             // From here, the only valid input is a direction, which is one character
-            if (input.length > 1) {
-                println("Not a valid input")
+            if (command.length > 1 || command.equals("")) {
+                writer.write("Not a valid input\n").also { writer.flush() }
                 continue
             }
 
-            val direction = input.single()
+            val direction = command.single()
             val validDirection = direction in setOf(
                 directionKeys.north,
                 directionKeys.east,
@@ -47,7 +52,7 @@ class Game(private val container: Container) {
             )
 
             if (!validDirection) {
-                println("Direction is not valid")
+                writer.write("Direction is not valid\n").also { writer.flush() }
                 continue
             }
 
@@ -65,7 +70,7 @@ class Game(private val container: Container) {
             val newRow = robot.row
             val newColumn = robot.column
             if (!boardManager.validPosition(newRow, newColumn)) {
-                println("You cannot move outside the bounds of the board")
+                writer.write("You cannot move outside of the bord\n").also { writer.flush() }
                 container.robot.setPosition(oldRow, oldColumn)
                 continue
             }
@@ -120,11 +125,11 @@ class Game(private val container: Container) {
         } while (!isHome && !isDead && !isStarved)
 
         if (isHome) {
-            println("You reached home and won the game!!")
+            writer.write("You reached home and won the game!!").also { writer.flush() }
         } else if (isDead) {
-            println("You died because of the wolves")
+            writer.write("The wolves ate you, you lost!").also { writer.flush() }
         } else if (isStarved) {
-            println("You died because of starvation")
+            writer.write("Out of energy, you lost").also { writer.flush() }
         }
     }
 }

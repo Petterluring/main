@@ -9,7 +9,7 @@ import com.board.BoardManager
 import org.junit.jupiter.api.Test
 import kotlin.test.assertTrue
 
-class ContainerInputClass {
+class ContainerTest {
     private val boardSize = 10
     private val container = Container(
         Robot("Robot", 0, 0, 15, 3),
