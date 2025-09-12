@@ -1,4 +1,4 @@
 package com.player
 
-class Player {
+class HandTest {
 }
