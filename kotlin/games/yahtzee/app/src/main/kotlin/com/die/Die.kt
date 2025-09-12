@@ -18,7 +18,7 @@ class Die(
         this._currentValue = value
         }
 
-    fun role(): Int {
+    fun roll(): Int {
         this._currentValue = Random.nextInt(maxValue + 1 - minValue) + minValue
         return _currentValue
     }
