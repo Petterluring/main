@@ -2,6 +2,10 @@ package com.die
 
 import kotlin.random.Random
 
+
+/*
+* Class for emulating a die.
+*/
 class Die(
     val minValue: Int,
     val maxValue: Int
