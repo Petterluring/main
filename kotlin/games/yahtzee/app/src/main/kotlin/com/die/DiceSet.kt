@@ -21,7 +21,7 @@ class DiceSet(private val dice: List<Die>) {
             }
         }
 
-        val occurences = MutableList(indices.size) { 0 }
+        val occurences = MutableList(dice.size) { 0 }
         indices.forEach { i -> occurences[i]++ }
         occurences.forEach { o -> require(o in 0..1) {
             "Each unique index may occur at most once."

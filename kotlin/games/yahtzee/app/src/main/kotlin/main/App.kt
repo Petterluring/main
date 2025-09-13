@@ -1,10 +1,20 @@
 package main
 
+import com.die.DiceSet
+import com.die.Die
 import kotlin.random.Random
 
 
 fun main() {
-    val lst = listOf(1, 2, 3)
-    val lst1 = lst.map { i -> i + 1 }
-    println(lst1)
+    val diceSet = DiceSet(
+        listOf(
+            Die(1, 6),
+            Die(1, 6),
+            Die(1, 6),
+            Die(1, 6),
+            Die(1, 6)
+        )
+    )
+
+    diceSet.selectiveRoll(4, 4)
 }
