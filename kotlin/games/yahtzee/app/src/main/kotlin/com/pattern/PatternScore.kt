@@ -1,4 +1,4 @@
-package com.calculator
+package com.pattern
 
 data class PatternScore(
     val ones: Int,

@@ -1,4 +1,4 @@
-package com.calculator
+package com.pattern
 
 class PatternCalculator(
     private val _diceValues: List<Int>
