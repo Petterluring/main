@@ -6,15 +6,15 @@ import kotlin.random.Random
 
 
 fun main() {
-    val diceSet = DiceSet(
-        listOf(
-            Die(1, 6),
-            Die(1, 6),
-            Die(1, 6),
-            Die(1, 6),
-            Die(1, 6)
-        )
-    )
-
-    diceSet.selectiveRoll(4, 4)
+    val threeOfAKindScores = buildSet {
+        add(0)
+        for (t1 in 1..6) {
+            for (t2 in 1..6) {
+                if (t1 == t2) continue
+                add(t1 * 3 + t2 * 2)
+            }
+        }
+    }
+    println(threeOfAKindScores)
+    println(threeOfAKindScores.size - 1)
 }
