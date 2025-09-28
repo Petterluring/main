@@ -1,22 +1,43 @@
 package com.pattern
 
-class PatternCalculator(
-    private val _diceValues: List<Int>
-) {
+class PatternCalculator {
+    private var _diceValues: List<Int> = listOf()
     private val occurences: MutableMap<Int, Int> = mutableMapOf()
-    init {
-        require(_diceValues.size == 5) {"There must be exactly 5 values in _diceValues"}
-        _diceValues.forEach { v -> require(v in 1..6) {
-            "Each value 'v' must be in the range 1 <= v <= 6"
+
+    var diceValues: List<Int>
+        get() = _diceValues
+        set(value) {
+            require(value.size == 5) {"There must be exactly 5 values in 'diceValues'"}
+            value.forEach { v -> require(v in 1..6) {
+                "Each value 'v' must be in the range 1 <= v <= 6 in 'diceValues'"
+                }
             }
+            if (occurences.isNotEmpty()) { occurences.clear() }
+            value.forEach { v ->
+                occurences[v] = (occurences[v] ?: 0) + 1
+            }
+            _diceValues = value
         }
-        _diceValues.forEach { v ->
-            occurences[v] = (occurences[v] ?: 0) + 1
-        }
-    }
 
-    fun calculate() {
-
+    fun calculate(): PatternScore {
+        check(_diceValues.isNotEmpty()) {"diceValues must be set before any calculations can be made."}
+        return PatternScore(
+            onesToSixes(1),
+            onesToSixes(2),
+            onesToSixes(3),
+            onesToSixes(4),
+            onesToSixes(5),
+            onesToSixes(6),
+            pair(),
+            twoPair(),
+            threeOfAKind(),
+            fourOfAKind(),
+            smallStraight(),
+            largeStraight(),
+            fullHouse(),
+            chance(),
+            yahtzee()
+        )
     }
 
     private fun onesToSixes(value: Int): Int {
@@ -32,13 +53,13 @@ class PatternCalculator(
     }
 
     private fun twoPair(): Int {
+        var score = 0
         if (occurences.size == 2 || occurences.size == 3) {
-            var score = 0
             occurences.forEach { (dieValue, count) ->
                 score += if (count == 2 || count == 3) { dieValue * 2 } else 0
             }
         }
-        return 0
+        return score
     }
 
     private fun threeOfAKind(): Int {
