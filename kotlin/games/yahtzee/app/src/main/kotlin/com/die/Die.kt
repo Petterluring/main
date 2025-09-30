@@ -17,7 +17,7 @@ class Die(
         get() = _currentValue
         set(value) {
             require(value in minValue ..maxValue) {
-                "Value must be in range of $minValue<= v <= $maxValue"
+                "Value must be in range of $minValue <= v <= $maxValue"
             }
         this._currentValue = value
         }

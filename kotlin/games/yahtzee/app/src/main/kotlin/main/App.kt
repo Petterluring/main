@@ -1,20 +1,17 @@
 package main
 
-import com.die.DiceSet
-import com.die.Die
-import kotlin.random.Random
 
+import kotlin.reflect.KMutableProperty0
 
 fun main() {
-    val threeOfAKindScores = buildSet {
-        add(0)
-        for (t1 in 1..6) {
-            for (t2 in 1..6) {
-                if (t1 == t2) continue
-                add(t1 * 3 + t2 * 2)
-            }
-        }
-    }
-    println(threeOfAKindScores)
-    println(threeOfAKindScores.size - 1)
+    var a = 5
+    var b = 10
+    val lst = listOf( {a}, {b} )
+    println(lst[0].invoke())
+    a = 10
+    println(lst[0].invoke())
+
+    println(lst[1].invoke())
+    b = 15
+    println(lst[1].invoke())
 }
