@@ -23,7 +23,7 @@ class ScoreColumn {
     private var _total         =  0
 
     companion object {
-        private val VALUE_ERROR = "Illegal value"
+        private const val VALUE_ERROR = "Illegal value"
     }
 
     var ones
