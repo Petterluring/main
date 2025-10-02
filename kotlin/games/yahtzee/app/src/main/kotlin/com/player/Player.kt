@@ -5,7 +5,7 @@ import com.die.Die
 
 class Player(
     val firstName: String,
-    val lastName: String
+    val  lastName: String
 ) {
 
     val dice: DiceSet = DiceSet(listOf(

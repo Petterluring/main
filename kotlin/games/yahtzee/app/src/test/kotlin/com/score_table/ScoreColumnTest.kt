@@ -1,8 +1,11 @@
 package com.score_table
 
+import com.pattern.Patterns
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class ScoreColumnTest {
 
@@ -135,6 +138,31 @@ class ScoreColumnTest {
     }
 
     @Test
+    fun `can identify if a pattern is consumed`() {
+        Patterns.entries.forEach { pattern ->
+            assertFalse { scoreColumn.patternIsAssigned(pattern) }  }
+
+        scoreColumn.ones          = 0
+        scoreColumn.twos          = 0
+        scoreColumn.threes        = 0
+        scoreColumn.fours         = 0
+        scoreColumn.fives         = 0
+        scoreColumn.sixes         = 0
+        scoreColumn.pair          = 0
+        scoreColumn.twoPair       = 0
+        scoreColumn.threeOfAKind  = 0
+        scoreColumn.fourOfAKind   = 0
+        scoreColumn.smallStraight = 0
+        scoreColumn.largeStraight = 0
+        scoreColumn.fullHouse     = 0
+        scoreColumn.chance        = 0
+        scoreColumn.yahtzee       = 0
+
+        Patterns.entries.forEach { pattern ->
+            assertTrue { scoreColumn.patternIsAssigned(pattern) }  }
+    }
+
+    @Test
     fun `can deal with illegal value`() {
         for (illegalVal in listOf(-1, 1000)) {
             assertThrows<IllegalArgumentException> {
@@ -184,5 +212,4 @@ class ScoreColumnTest {
             }
         }
     }
-
 }
