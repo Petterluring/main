@@ -42,12 +42,12 @@ class ScoreColumnTest {
 
     @Test
     fun `can assign bonus correctly`() {
-        scoreColumn.ones = 3 * 1;
-        scoreColumn.twos = 3 * 2;
-        scoreColumn.threes = 3 * 3;
-        scoreColumn.fours = 3 * 4;
-        scoreColumn.fives = 3 * 5;
-        scoreColumn.sixes = 3 * 6;
+        scoreColumn.ones = 3 * 1
+        scoreColumn.twos = 3 * 2
+        scoreColumn.threes = 3 * 3
+        scoreColumn.fours = 3 * 4
+        scoreColumn.fives = 3 * 5
+        scoreColumn.sixes = 3 * 6
 
         assertEquals(50, scoreColumn.bonus)
 

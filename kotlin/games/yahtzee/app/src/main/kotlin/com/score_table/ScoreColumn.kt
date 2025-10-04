@@ -21,15 +21,11 @@ class ScoreColumn {
     private var       _yahtzee = -1
     private var         _total =  0
 
-    companion object {
-        private const val VALUE_ERROR = "Illegal value"
-    }
-
     var ones
         get() = if (_ones == -1) 0 else _ones
         set(value) {
-            require(value in 0..5) {"$VALUE_ERROR for ones."}
-            _twos = value
+            require(ones in Patterns.ONES.legalValues) { Patterns.ONES.valueError }
+            _ones = value
             calculateBonus()
             calculateTotal()
         }
@@ -37,7 +33,7 @@ class ScoreColumn {
     var twos
         get() = if (_twos == -1) 0 else _twos
         set(value) {
-            require(value in setOf(0, 2, 4, 6, 8, 10)) {"$VALUE_ERROR for twos."}
+            require(twos in Patterns.TWOS.legalValues) { Patterns.TWOS.valueError }
             _twos = value
             calculateBonus()
             calculateTotal()
@@ -46,7 +42,7 @@ class ScoreColumn {
     var threes
         get() = if (_threes == -1) 0 else _threes
         set(value) {
-            require(value in setOf(0, 3, 6, 9, 12, 15)) {"$VALUE_ERROR for threes."}
+            require(threes in Patterns.THREES.legalValues) { Patterns.THREES.valueError }
             _threes = value
             calculateBonus()
             calculateTotal()
@@ -55,7 +51,7 @@ class ScoreColumn {
     var fours
         get() = if (_fours == -1) 0 else _fours
         set(value) {
-            require(value in setOf(0, 4, 8, 12, 16, 20)) {"$VALUE_ERROR for fours."}
+            require(fours in Patterns.FOURS.legalValues) { Patterns.FOURS.valueError }
             _fours = value
             calculateBonus()
             calculateTotal()
@@ -64,7 +60,7 @@ class ScoreColumn {
     var fives
         get() = if (_fives == -1) 0 else _fives
         set(value) {
-            require(value in setOf(0, 5, 10, 15, 20, 25)) {"$VALUE_ERROR for fives."}
+            require(fives in Patterns.FIVES.legalValues) { Patterns.FIVES.valueError }
             _fives = value
             calculateBonus()
             calculateTotal()
@@ -73,7 +69,7 @@ class ScoreColumn {
     var sixes
         get() = if (_sixes == -1) 0 else _sixes
         set(value) {
-            require(value in setOf(0, 6, 12, 18, 24, 30)) {"$VALUE_ERROR for sixes."}
+            require(sixes in Patterns.SIXES.legalValues) { Patterns.SIXES.valueError }
             _sixes = value
             calculateBonus()
             calculateTotal()
@@ -85,7 +81,7 @@ class ScoreColumn {
     var pair
         get() = if (_pair == -1) 0 else _pair
         set(value) {
-            require(value in setOf(0, 2, 4, 6, 8, 10, 12)) {"$VALUE_ERROR for pair."}
+            require(pair in Patterns.PAIR.legalValues) { Patterns.PAIR.valueError }
             _pair = value
             calculateBonus()
             calculateTotal()
@@ -94,7 +90,7 @@ class ScoreColumn {
     var twoPair
         get() = if (_twoPair == -1) 0 else _twoPair
         set(value) {
-            require(value in setOf(0, 6, 8, 10, 12, 14, 16, 18, 20, 22)) {"$VALUE_ERROR for two pair."}
+            require(twoPair in Patterns.TWO_PAIR.legalValues) { Patterns.TWO_PAIR.valueError }
             _twoPair = value
             calculateBonus()
             calculateTotal()
@@ -103,7 +99,7 @@ class ScoreColumn {
     var threeOfAKind
         get() = if (_threeOfAKind == -1) 0 else _threeOfAKind
         set(value) {
-            require(value in setOf(0, 3, 6, 9, 12, 15, 18)) {"$VALUE_ERROR for three of a kind."}
+            require(threeOfAKind in Patterns.THREE_OF_A_KIND.legalValues) { Patterns.THREE_OF_A_KIND.valueError }
             _threeOfAKind = value
             calculateBonus()
             calculateTotal()
@@ -112,7 +108,7 @@ class ScoreColumn {
     var fourOfAKind
         get() = if (_fourOfAKind == -1) 0 else _fourOfAKind
         set(value) {
-            require(value in setOf(0, 4, 8, 12, 16, 20, 24)) {"$VALUE_ERROR for four of a kind."}
+            require(fourOfAKind in Patterns.FOUR_OF_A_KIND.legalValues) { Patterns.FOUR_OF_A_KIND.valueError }
             _fourOfAKind = value
             calculateBonus()
             calculateTotal()
@@ -121,7 +117,7 @@ class ScoreColumn {
     var smallStraight
         get() = if (_smallStraight == -1) 0 else _smallStraight
         set(value) {
-            require(value in setOf(0, 15)) {"$VALUE_ERROR for small straight."}
+            require(smallStraight in Patterns.SMALL_STRAIGHT.legalValues) { Patterns.SMALL_STRAIGHT.valueError }
             _smallStraight = value
             calculateBonus()
             calculateTotal()
@@ -130,7 +126,7 @@ class ScoreColumn {
     var largeStraight
         get() = if (_largeStraight == -1) 0 else _largeStraight
         set(value) {
-            require(value in setOf(0, 20)) {"$VALUE_ERROR for large straight."}
+            require(largeStraight in Patterns.LARGE_STRAIGHT.legalValues) { Patterns.LARGE_STRAIGHT.valueError }
             _largeStraight = value
             calculateBonus()
             calculateTotal()
@@ -139,9 +135,7 @@ class ScoreColumn {
     var fullHouse
         get() = if (_fullHouse == -1) 0 else _fullHouse
         set(value) {
-            require(value in setOf(
-                0, 7, 9, 11, 13, 15, 8, 12, 14, 16, 18, 17, 19,
-                21, 22, 24, 23, 27, 20, 26, 28)) {"$VALUE_ERROR for full house."}
+            require(fullHouse in Patterns.FULL_HOUSE.legalValues) { Patterns.FULL_HOUSE.valueError }
             _fullHouse = value
             calculateBonus()
             calculateTotal()
@@ -150,7 +144,7 @@ class ScoreColumn {
     var chance
         get() = if (_chance == -1) 0 else _chance
         set(value) {
-            require(value in 0..6*5) {"$VALUE_ERROR for chance."}
+            require(chance in Patterns.CHANCE.legalValues) { Patterns.CHANCE.valueError }
             _chance = value
             calculateBonus()
             calculateTotal()
@@ -159,7 +153,7 @@ class ScoreColumn {
     var yahtzee
         get() = if (_yahtzee == -1) 0 else _yahtzee
         set(value) {
-            require(value in setOf(0, 50)) {"$VALUE_ERROR for yahtzee."}
+            require(yahtzee in Patterns.YAHTZEE.legalValues) { Patterns.YAHTZEE.valueError }
             _yahtzee = value
             calculateBonus()
             calculateTotal()
@@ -190,6 +184,10 @@ class ScoreColumn {
             Patterns.CHANCE          -> return _chance        > -1
             else                     -> return _yahtzee       > -1
         }
+    }
+
+    override fun toString(): String {
+        return ""
     }
 
     private fun calculateBonus() {
