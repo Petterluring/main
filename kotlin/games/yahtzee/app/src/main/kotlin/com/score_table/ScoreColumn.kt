@@ -24,7 +24,7 @@ class ScoreColumn {
     var ones
         get() = if (_ones == -1) 0 else _ones
         set(value) {
-            require(ones in Patterns.ONES.legalValues) { Patterns.ONES.valueError }
+            require(value in Patterns.ONES.legalValues) { Patterns.ONES.valueError }
             _ones = value
             calculateBonus()
             calculateTotal()
@@ -33,7 +33,7 @@ class ScoreColumn {
     var twos
         get() = if (_twos == -1) 0 else _twos
         set(value) {
-            require(twos in Patterns.TWOS.legalValues) { Patterns.TWOS.valueError }
+            require(value in Patterns.TWOS.legalValues) { Patterns.TWOS.valueError }
             _twos = value
             calculateBonus()
             calculateTotal()
@@ -42,7 +42,7 @@ class ScoreColumn {
     var threes
         get() = if (_threes == -1) 0 else _threes
         set(value) {
-            require(threes in Patterns.THREES.legalValues) { Patterns.THREES.valueError }
+            require(value in Patterns.THREES.legalValues) { Patterns.THREES.valueError }
             _threes = value
             calculateBonus()
             calculateTotal()
@@ -51,7 +51,7 @@ class ScoreColumn {
     var fours
         get() = if (_fours == -1) 0 else _fours
         set(value) {
-            require(fours in Patterns.FOURS.legalValues) { Patterns.FOURS.valueError }
+            require(value in Patterns.FOURS.legalValues) { Patterns.FOURS.valueError }
             _fours = value
             calculateBonus()
             calculateTotal()
@@ -60,7 +60,7 @@ class ScoreColumn {
     var fives
         get() = if (_fives == -1) 0 else _fives
         set(value) {
-            require(fives in Patterns.FIVES.legalValues) { Patterns.FIVES.valueError }
+            require(value in Patterns.FIVES.legalValues) { Patterns.FIVES.valueError }
             _fives = value
             calculateBonus()
             calculateTotal()
@@ -69,7 +69,7 @@ class ScoreColumn {
     var sixes
         get() = if (_sixes == -1) 0 else _sixes
         set(value) {
-            require(sixes in Patterns.SIXES.legalValues) { Patterns.SIXES.valueError }
+            require(value in Patterns.SIXES.legalValues) { Patterns.SIXES.valueError }
             _sixes = value
             calculateBonus()
             calculateTotal()
@@ -81,7 +81,7 @@ class ScoreColumn {
     var pair
         get() = if (_pair == -1) 0 else _pair
         set(value) {
-            require(pair in Patterns.PAIR.legalValues) { Patterns.PAIR.valueError }
+            require(value in Patterns.PAIR.legalValues) { Patterns.PAIR.valueError }
             _pair = value
             calculateBonus()
             calculateTotal()
@@ -90,7 +90,7 @@ class ScoreColumn {
     var twoPair
         get() = if (_twoPair == -1) 0 else _twoPair
         set(value) {
-            require(twoPair in Patterns.TWO_PAIR.legalValues) { Patterns.TWO_PAIR.valueError }
+            require(value in Patterns.TWO_PAIR.legalValues) { Patterns.TWO_PAIR.valueError }
             _twoPair = value
             calculateBonus()
             calculateTotal()
@@ -99,7 +99,7 @@ class ScoreColumn {
     var threeOfAKind
         get() = if (_threeOfAKind == -1) 0 else _threeOfAKind
         set(value) {
-            require(threeOfAKind in Patterns.THREE_OF_A_KIND.legalValues) { Patterns.THREE_OF_A_KIND.valueError }
+            require(value in Patterns.THREE_OF_A_KIND.legalValues) { Patterns.THREE_OF_A_KIND.valueError }
             _threeOfAKind = value
             calculateBonus()
             calculateTotal()
@@ -108,7 +108,7 @@ class ScoreColumn {
     var fourOfAKind
         get() = if (_fourOfAKind == -1) 0 else _fourOfAKind
         set(value) {
-            require(fourOfAKind in Patterns.FOUR_OF_A_KIND.legalValues) { Patterns.FOUR_OF_A_KIND.valueError }
+            require(value in Patterns.FOUR_OF_A_KIND.legalValues) { Patterns.FOUR_OF_A_KIND.valueError }
             _fourOfAKind = value
             calculateBonus()
             calculateTotal()
@@ -117,7 +117,7 @@ class ScoreColumn {
     var smallStraight
         get() = if (_smallStraight == -1) 0 else _smallStraight
         set(value) {
-            require(smallStraight in Patterns.SMALL_STRAIGHT.legalValues) { Patterns.SMALL_STRAIGHT.valueError }
+            require(value in Patterns.SMALL_STRAIGHT.legalValues) { Patterns.SMALL_STRAIGHT.valueError }
             _smallStraight = value
             calculateBonus()
             calculateTotal()
@@ -126,7 +126,7 @@ class ScoreColumn {
     var largeStraight
         get() = if (_largeStraight == -1) 0 else _largeStraight
         set(value) {
-            require(largeStraight in Patterns.LARGE_STRAIGHT.legalValues) { Patterns.LARGE_STRAIGHT.valueError }
+            require(value in Patterns.LARGE_STRAIGHT.legalValues) { Patterns.LARGE_STRAIGHT.valueError }
             _largeStraight = value
             calculateBonus()
             calculateTotal()
@@ -135,7 +135,7 @@ class ScoreColumn {
     var fullHouse
         get() = if (_fullHouse == -1) 0 else _fullHouse
         set(value) {
-            require(fullHouse in Patterns.FULL_HOUSE.legalValues) { Patterns.FULL_HOUSE.valueError }
+            require(value in Patterns.FULL_HOUSE.legalValues) { Patterns.FULL_HOUSE.valueError }
             _fullHouse = value
             calculateBonus()
             calculateTotal()
@@ -144,7 +144,7 @@ class ScoreColumn {
     var chance
         get() = if (_chance == -1) 0 else _chance
         set(value) {
-            require(chance in Patterns.CHANCE.legalValues) { Patterns.CHANCE.valueError }
+            require(value in Patterns.CHANCE.legalValues) { Patterns.CHANCE.valueError }
             _chance = value
             calculateBonus()
             calculateTotal()
@@ -153,7 +153,7 @@ class ScoreColumn {
     var yahtzee
         get() = if (_yahtzee == -1) 0 else _yahtzee
         set(value) {
-            require(yahtzee in Patterns.YAHTZEE.legalValues) { Patterns.YAHTZEE.valueError }
+            require(value in Patterns.YAHTZEE.legalValues) { Patterns.YAHTZEE.valueError }
             _yahtzee = value
             calculateBonus()
             calculateTotal()

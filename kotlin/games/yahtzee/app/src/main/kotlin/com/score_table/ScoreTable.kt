@@ -9,20 +9,21 @@ class ScoreTable(players: List<Player>) {
         players.forEach { player -> _scoreColumns.put(player, ScoreColumn()) }
     }
 
-    fun getScoreColumn(player: Player?): ScoreColumn? {
+    fun getScoreColumn(player: Player): ScoreColumn? {
         return _scoreColumns[player]
     }
 
     fun removePlayer(player: Player) {
-        if (_scoreColumns[player] != null) { _scoreColumns.remove(player) }
+        if (_scoreColumns.containsKey(player)) { _scoreColumns.remove(player) }
     }
 
     fun addPlayer(player: Player) {
-        if (_scoreColumns[player] == null) {
-            _scoreColumns.put(player, ScoreColumn())
-        } else {
-            throw IllegalArgumentException("Player already exist.")
-        }
+        require(!_scoreColumns.containsKey(player)) {"Player already exist."}
+        _scoreColumns.put(player, ScoreColumn())
+    }
+
+    fun playerExists(player: Player): Boolean {
+        return _scoreColumns.containsKey(player)
     }
 
     override fun toString(): String {

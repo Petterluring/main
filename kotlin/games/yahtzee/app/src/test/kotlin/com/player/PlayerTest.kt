@@ -1,11 +1,18 @@
 package com.player
 
+import com.die.DiceSet
+import com.die.Die
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class PlayerTest {
 
-    private val player = Player("Jon", "Doe")
+    private val dice = DiceSet(
+        listOf(
+            Die(1, 6)
+        )
+    )
+    private val player = Player("Jon", "Doe", dice)
 
     @Test
     fun `can return the first and last name correctly`() {

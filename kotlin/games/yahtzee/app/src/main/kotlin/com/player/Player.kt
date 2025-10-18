@@ -5,18 +5,9 @@ import com.die.Die
 
 class Player(
     val firstName: String,
-    val  lastName: String
+    val  lastName: String,
+    val      dice: DiceSet
 ) {
-
-    val dice: DiceSet = DiceSet(listOf(
-        Die(1, 6),
-        Die(1, 6),
-        Die(1, 6),
-        Die(1, 6),
-        Die(1, 6),
-        )
-    )
-
     val name: String
         get() = "$firstName $lastName"
 
